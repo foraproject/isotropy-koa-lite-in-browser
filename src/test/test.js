@@ -58,5 +58,4 @@ describe("koa-lite-in-browser", () => {
         called.should.be.true();
     });
 
-
 });
