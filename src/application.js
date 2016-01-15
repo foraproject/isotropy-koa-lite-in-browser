@@ -15,7 +15,7 @@ class Application {
     listen() {
         //Setup page.js handlers to intercept page .
         this.listening = true;
-        this.page("*", this.callback());
+        this.page("*", this.getPageJSCallback());
         this.page();
     }
 
@@ -36,11 +36,18 @@ class Application {
         return this;
     }
 
-    callback() {
+    getPageJSCallback() {
         const fn = compose(this.middleware);
 
         return () => {
-            return fn();
+            context.method = "GET"; //We support only get in koa-lite
+            context.path = location.pathname;
+            context.host = location.host;
+            context.hostname = location.hostname;
+            context.url = location.href;
+            context.protocol = location.protocol;
+            context.search = location.search;
+            return fn(context);
         };
     }
 };

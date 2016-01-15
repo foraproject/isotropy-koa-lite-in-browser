@@ -50,13 +50,19 @@ describe("koa-lite-in-browser", () => {
         GLOBAL.location = GLOBAL.window.location;
         GLOBAL.history = GLOBAL.window.history;
 
+        let context;
         let called = false;
         const server = new koa();
-        server.use(async () => {
+        server.use(async (_context) => {
             called = true;
+            context = _context;
         });
         server.listen();
         called.should.be.true();
+        context.method.toUpperCase().should.equal("GET");
+        context.path.should.equal("/");
+        context.host.should.equal("www.example.com");
+        context.protocol.should.equal("http:");
     });
 
 });
