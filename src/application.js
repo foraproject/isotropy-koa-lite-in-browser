@@ -14,8 +14,9 @@ class Application {
 
     listen() {
         //Setup page.js handlers to intercept page .
+        this.composedMiddleware = compose(this.middleware);
         this.listening = true;
-        this.page("*", this.getPageJSCallback());
+        this.page("*", this.runMiddleware.bind(this));
         this.page();
     }
 
@@ -36,19 +37,15 @@ class Application {
         return this;
     }
 
-    getPageJSCallback() {
-        const fn = compose(this.middleware);
-
-        return () => {
-            context.method = "GET"; //We support only get in koa-lite
-            context.path = location.pathname;
-            context.host = location.host;
-            context.hostname = location.hostname;
-            context.url = location.href;
-            context.protocol = location.protocol;
-            context.search = location.search;
-            return fn(context);
-        };
+    runMiddleware() {
+        context.method = "GET"; //We support only get in koa-lite
+        context.path = location.pathname;
+        context.host = location.host;
+        context.hostname = location.hostname;
+        context.url = location.href;
+        context.protocol = location.protocol;
+        context.search = location.search;
+        return this.composedMiddleware(context);
     }
 };
 
