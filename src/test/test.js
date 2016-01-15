@@ -1,3 +1,4 @@
+import __polyfill from "babel-polyfill";
 import should from "should";
 import jsdom from "jsdom";
 import koa from "../application";

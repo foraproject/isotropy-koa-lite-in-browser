@@ -1,4 +1,3 @@
-import __polyfill from "babel-polyfill";
 import getPage from "isotropy-page";
 import compose from "koa-compose";
 
