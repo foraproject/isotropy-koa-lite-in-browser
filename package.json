@@ -1,9 +1,9 @@
 {
     "author": "Jeswin Kumar <jeswinpk@agilehead.com>",
     "name": "isotropy-koa-lite-in-browser",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Koa application framework that runs inside the browser.",
-    "main": "dist/application.js",
+    "main": "dist/koa.js",
     "scripts": {
         "test": "mocha dist/test/test.js"
     },
