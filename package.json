@@ -1,7 +1,7 @@
 {
     "author": "Jeswin Kumar <jeswinpk@agilehead.com>",
     "name": "isotropy-koa-lite-in-browser",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "Koa application framework that runs inside the browser.",
     "main": "dist/koa.js",
     "scripts": {
@@ -27,6 +27,6 @@
         "should": "*"
     },
     "engines": { "node": ">= 0.11.9" },
-    "keywords": ["koa", "ispmorphic"],
+    "keywords": ["koa", "isomorphic"],
     "license" : "GPL-3.0+"
 }
