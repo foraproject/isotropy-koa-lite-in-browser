@@ -45,7 +45,7 @@ describe("koa-lite-in-browser", () => {
 
 
   it("Must respond to page load event", async () => {
-    GLOBAL.document = jsdom.jsdom(HTML, { url: "http://www.example.com" });
+    GLOBAL.document = jsdom.jsdom(HTML, { url: "http://www.example.com?q=10" });
     GLOBAL.window = GLOBAL.document.defaultView;
     GLOBAL.location = GLOBAL.window.location;
     GLOBAL.history = GLOBAL.window.history;
@@ -63,6 +63,7 @@ describe("koa-lite-in-browser", () => {
     context.path.should.equal("/");
     context.host.should.equal("www.example.com");
     context.protocol.should.equal("http:");
+    context.search.should.equal("?q=10");
   });
 
 });
